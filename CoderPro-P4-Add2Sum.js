@@ -15,5 +15,4 @@ function add2sum(arr,val){
     }
     return 0
 }
-
-add2sum([2,7,11,15], 18)
+//add2sum([2,7,11,15], 18)
