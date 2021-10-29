@@ -20,18 +20,17 @@ list2.next = new Node(6)
 list2.next.next = new Node(4)
 
 function Add2Numbers(num1, num2){
-    const array = []
     let carry = 0
-    let result = new Node(0)
-    let currentNode = result
-    while(num1 !== null || num2 !== null){
-        let v1 = 0
-        let v2 = 0
-        if (num1 !== null) v1 = num1.value
-        if (num2 !== null) v2 = num2.value
-        let sum = v1 + v2 + carry
-        carry = Math.floor(sum/10)
-        sum = sum % 10
+    let result = new Node(0) //initialize result aka linked.list.3 
+    let currentNode = result //initialize current pointer for linked.list.3 in order to build it...
+    while(num1 !== null || num2 !== null){ //while either of them is NOT null, keep going!
+        let v1 = 0 //initialize value of list 1
+        let v2 = 0 //initialize value of list 2
+        if (num1 !== null) v1 = num1.value  //if list 1 not null, then v1 = list 1 value
+        if (num2 !== null) v2 = num2.value //if list 2 not null, then v2 = list 1 value
+        let sum = v1 + v2 + carry 
+        carry = Math.floor(sum/10) //7/10 -> 0.7 -> 0 (to get carry only)
+        sum = sum % 10 //ex: 7 % 10 -> 0.7 -> 7 (to get sum w/o carry)
         currentNode.next = new Node(sum)
         //set up for next loop/iteration:
         currentNode  = currentNode.next 
@@ -39,7 +38,7 @@ function Add2Numbers(num1, num2){
         if (num2 !== null) num2 = num2.next
 
     }
-    console.log('ARRAY OF SUMS WITH CARRY:',result.next )
+  //  console.log('ARRAY OF SUMS WITH CARRY:',result.next )
     return result.next 
 }
 
