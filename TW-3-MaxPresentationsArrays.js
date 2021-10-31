@@ -14,9 +14,31 @@
 //   int：the maximum number of presentations that can be attended by one person
 function maxPresentations(startSched, endSched){
     let final = 0
-    
-    console.log(startSched, endSched)
-
+    //for EACH START
+    for (let i=0; i<startSched.length; i++){
+        let start = startSched[i]
+        let end = endSched[i]
+        let startCount = 1
+        //FOR FIRST LOOP: 
+        for (let j=0; j < startSched.length; j++){
+            let startFirst = startSched[j] //always reassign
+            let endFirst = endSched[j] //always reassign
+            let startNext = startSched[j+1] //NEVER
+            let endNext = endSched[j+1] //NEVER
+            console.log(j,') START: ', startFirst, startNext)
+            if (endFirst <= startNext){
+                startCount ++
+                startFirst = startNext
+                endFirst = endNext
+            }
+            console.log(j,') COUNT: ',startCount)
+            // if (startCount > count){
+            //     count = startCount
+            // }
+        }
+        // console.log('COUNT: ', count)
+       // console.log('START: ', start, startCount)
+    }
     return final
 }
 
