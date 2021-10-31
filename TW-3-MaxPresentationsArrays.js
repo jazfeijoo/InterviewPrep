@@ -5,6 +5,7 @@
 // Determine the maximum number of presentations that can be attended by one person.
 
 // Complete the function maxPresentations in the editor below.
+// Assume arrays are already sorted
 
 // maxPresentations has the following parameter(s)：
 //   scheduleStart[n]：the start times of presentation i
@@ -20,9 +21,11 @@ function maxPresentations(startSched, endSched){
         let end = endSched[i]
         let startCount = 1
         //FOR FIRST LOOP: 
-        for (let j=0; j < startSched.length; j++){
-            let startFirst = startSched[j] //always reassign
-            let endFirst = endSched[j] //always reassign
+
+        for (let j=0; j < startSched.length-1; j++){
+            let startFirst = startSched[i] //always reassign
+            let endFirst = endSched[i] //always reassign
+
             let startNext = startSched[j+1] //NEVER
             let endNext = endSched[j+1] //NEVER
             console.log(j,') START: ', startFirst, startNext)
@@ -32,12 +35,7 @@ function maxPresentations(startSched, endSched){
                 endFirst = endNext
             }
             console.log(j,') COUNT: ',startCount)
-            // if (startCount > count){
-            //     count = startCount
-            // }
         }
-        // console.log('COUNT: ', count)
-       // console.log('START: ', start, startCount)
     }
     return final
 }
