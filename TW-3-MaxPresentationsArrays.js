@@ -19,22 +19,10 @@ function maxPresentations(startSched, endSched){
     for (let i=0; i<startSched.length; i++){
         let start = startSched[i]
         let end = endSched[i]
-        let startCount = 1
-        //FOR FIRST LOOP: 
-
+        let set = []
         for (let j=0; j < startSched.length-1; j++){
-            let startFirst = startSched[i] //always reassign
-            let endFirst = endSched[i] //always reassign
-
-            let startNext = startSched[j+1] //NEVER
-            let endNext = endSched[j+1] //NEVER
-            console.log(j,') START: ', startFirst, startNext)
-            if (endFirst <= startNext){
-                startCount ++
-                startFirst = startNext
-                endFirst = endNext
-            }
-            console.log(j,') COUNT: ',startCount)
+            
+            
         }
     }
     return final
