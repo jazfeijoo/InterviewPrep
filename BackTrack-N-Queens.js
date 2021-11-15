@@ -11,25 +11,14 @@ function solveNqueens(n){
         }
         return matrix 
     }
-    const placeQueen = (r,c) => {
-        board[r][c] = 1
+    const placeQueen = (row,col) => {
+        board[row][col] = 1
     }
     let finalCount = 0
     let board = createBoard(n)
-    for (let r=0; r < n; r++){
-        let used = []
-        for (let c=0; c<n; c++){
-            if(used.length === 0){
-                placeQueen(r,c)
-                used.push(c)
-            } else {
-                //only push if curr col @ row is not in used AND  
-            }
-        }
-        if (used.length === n){
-            finalCount++
-        }
-    }
+    console.log('CHESS BOARD: ',board)
+
 }    
 
 solveNqueens(4) //EXPECTED OUTPUT: 2
+solveNqueens(8)
