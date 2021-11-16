@@ -3,22 +3,67 @@
 // Each solution contains a distinct board configuration of the n-queens' placement: 
 // Where Q and . indicate a queen and an empty space respectively 
 
+ const createBoard = (n) => {
+    const matrix = new Array(n) //create columns
+    for (let i=0; i<n; i++){ //create rows
+        matrix[i] = new Array(n).fill('.')
+    }
+    return matrix 
+}
+
 function solveNqueens(n){
-    const createBoard = (n) => {
-        const matrix = new Array(n) //create columns
-        for (let i=0; i<n; i++){ //create rows
-            matrix[i] = new Array(n).fill('.')
-        }
-        return matrix 
-    }
-    const placeQueen = (row,col) => {
-        board[row][col] = 1
-    }
-    let finalCount = 0
+    //DRIVER FUNCTION: FOR EACH COL POSITION IN FIRST ROW, EXPLORE POSSIBLE SOLUTIONS
     let board = createBoard(n)
-    console.log('CHESS BOARD: ',board)
+    let result = [];
+    //RECURSIVE FUNCTION:
+    solveNqueensHelper(0, board, result, cols);
 
 }    
 
-solveNqueens(4) //EXPECTED OUTPUT: 2
-solveNqueens(8)
+function solveNqueensHelper(indexRow=0, board, result=[]){
+    //base case: 
+    if (n === indexRow + 1){
+        result.push(board)
+        return result
+    }
+    for (let c = 0; c < n; c++){ //where c = column index
+        if (validateBoard(board, indexRow, c)){
+            board[indexRow][col] = 'Q'
+            solveNqueensHelper(indexRow+1, board, board)
+            board[indexRow][col] = '.'
+
+        } else {
+            //it is not valid! 
+        }
+        
+    }
+}
+
+function validateBoard(board, rowIndex, colIndex){
+    //check all horizontals (rows)
+    for (let c = 0; c < board.length; c++){
+        if (board[rowIndex][c] === 'Q') return false;
+
+    }
+    //check diagonals down (r++ -> go to lower rows, c-- -> prev columns)
+    for (let r = rowIndex-1, c = colIndex-1; 0 <=r && 0 <=c;  r++, c--){
+        if (board[r][c] === 'Q') return false
+    }
+
+    for (let r = rowIndex-1, c = colIndex-1; 0 <=r && 0 <=c;  r--, c--){
+        if (board[r][c] === 'Q') return false
+    }
+    return true
+}
+
+//CHECK VALIDATE FUNCTION:
+// let sampleBoard = createBoard(5);
+// sampleBoard[0][0] = 'Q'
+// console.log('BOARD CHECK VALIDATION:',sampleBoard)
+// console.log('should be F:',validateBoard(sampleBoard, 0, 1))
+// console.log('should be F:',validateBoard(sampleBoard, 1, 1))
+// console.log('should be T:',validateBoard(sampleBoard, 2, 1))
+
+//CHECK FINAL SOLVE FUNCTION:
+// solveNqueens(4) //EXPECTED OUTPUT: 2
+// solveNqueens(8) // EXPECTED OUTPUT: 
