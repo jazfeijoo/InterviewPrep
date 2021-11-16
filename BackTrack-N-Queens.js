@@ -13,46 +13,49 @@
 
 function solveNqueens(n){
     //DRIVER FUNCTION: FOR EACH COL POSITION IN FIRST ROW, EXPLORE POSSIBLE SOLUTIONS
-    let board = createBoard(n)
-    let result = [];
-    //RECURSIVE FUNCTION:
-    solveNqueensHelper(0, board, result, cols);
-
+    let final = solveNqueensHelper(n, 0, [], [])
+    console.log('FINAL FINAL: ',final.length)
 }    
 
-function solveNqueensHelper(indexRow=0, board, result=[]){
+function solveNqueensHelper(n, indexRow, board=[], result=[]){
     //base case: 
-    if (n === indexRow + 1){
-        result.push(board)
-        return result
-    }
-    for (let c = 0; c < n; c++){ //where c = column index
-        if (validateBoard(board, indexRow, c)){
-            board[indexRow][col] = 'Q'
-            solveNqueensHelper(indexRow+1, board, board)
-            board[indexRow][col] = '.'
-
-        } else {
-            //it is not valid! 
+    if (board[indexRow] === board[n-1]){
+        result.push(board.slice())
+        return
+    } else {
+        for (let c = 0; c < n; c++){ //where c = column index
+            if (c === n-1){
+                return
+            } else {
+                if (validateBoard(board, indexRow, c)){
+                    let colPassed = new Array(n).fill('.')
+                    colPassed[c] = 'Q'
+                    board.push(colPassed)
+                    solveNqueensHelper(n, indexRow+1, board, result)
+                }
+                board.pop()
+            }
         }
-        
     }
 }
 
+solveNqueensHelper(4,0,[], [])
+
 function validateBoard(board, rowIndex, colIndex){
     //check all horizontals (rows)
-    for (let c = 0; c < board.length; c++){
-        if (board[rowIndex][c] === 'Q') return false;
-
-    }
-    //check diagonals down (r++ -> go to lower rows, c-- -> prev columns)
-    for (let r = rowIndex-1, c = colIndex-1; 0 <=r && 0 <=c;  r++, c--){
-        if (board[r][c] === 'Q') return false
-    }
-
-    for (let r = rowIndex-1, c = colIndex-1; 0 <=r && 0 <=c;  r--, c--){
-        if (board[r][c] === 'Q') return false
-    }
+        for (let c = 0; c < board.length; c++){
+            if (board[rowIndex][c] === 'Q') return false;
+    
+        }
+        //check diagonals down (r++ -> go to lower rows, c-- -> prev columns)
+        for (let r = rowIndex+1, c = colIndex-1; r < board.length && 0 <=c;  r++, c--){
+            if (board[r][c] === 'Q') return false
+        }
+        //check diagonals up
+        for (let r = rowIndex-1, c = colIndex-1; 0 <=r && 0 <=c;  r--, c--){
+            if (board[r][c] === 'Q') return false
+        }
+    
     return true
 }
 
