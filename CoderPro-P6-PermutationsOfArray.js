@@ -21,7 +21,7 @@ function permutations(arr){
         }
     }
     backtrackHelper(arr, [])
-    console.log('RESULTS ARE THIS____: ',results)
+    //console.log('RESULTS ARE THIS____: ',results)
     return results
 
 }
