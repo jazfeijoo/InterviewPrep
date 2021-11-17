@@ -48,5 +48,4 @@ function sortListPointers(list){
    // console.log('FINAL LIST: ',list)
     return list 
 }
-sortListPointers(listTest2)
-console.log('testing commit contributions...')
+sortListPointers(listTest2) 
