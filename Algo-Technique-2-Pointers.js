@@ -24,7 +24,7 @@ let testArr1 = [-1, 1, 2, 3, 5]
 let x1 = 5
 console.log('FINAL ANS:',find2Nums(testArr1, x1))
 
-// 2, Sort a list (array of n numbers) that only has 3 unique values 
+// 2. Sort a list (array of n numbers) that only has 3 unique values 
 function sortListPointers(list){
     let startIndex = 0
     let endIndex = list.length -1
@@ -49,3 +49,4 @@ function sortListPointers(list){
     return list 
 }
 sortListPointers(listTest2)
+console.log('testing commit contributions...')
