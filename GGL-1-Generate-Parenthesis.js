@@ -1,11 +1,11 @@
 // Problem: Given an integer N representing the number of pairs of parentheses, 
 // the task is to generate all combinations of well-formed(balanced) parentheses.
-
+// REVIEW JS PRINCIPLES REGARDING VALUES VS. REFERENCES... + IN BACKTRACKING... 
 
 function allParenthesis(n){ //d=depth/layers
     let final = []
     allParHelper(n, 0, 0, "",final)
-    console.log('FINAL SOLVED BY J: ', final)
+    console.log('FINAL SOLVED: ', final)
     return final 
 }
 
@@ -14,21 +14,19 @@ function allParHelper(n, open, close, str, final){
         final.push(str)
         return
     } else {
-            if(open > close ){ //add '(' IF VALID for each n///
-                str = str.concat(')')
-                allParHelper(n, open, close + 1, str,final)
-               // str.slice(0,-1)
+            if(close < open){ //add '(' IF VALID for each n///
+              //  str = str.concat(')') //concat does not work here!! reference vs. value PRINCIPLE!!!
+                allParHelper(n, open, close + 1,str + ')', final)
             }
             if(open < n){ //add ')' IF VALID for each n
-                str = str.concat('(')
-                allParHelper(n, open + 1, close, str,final)
-               // str.slice(0,-1)
+             //   str = str.concat('(')
+                allParHelper(n, open + 1, close, str + '(', final)
             }
     }
 }
 
-allParenthesis(2) // OUTPUT: ((())) and (()()) and (())() and ()(()) and ()()()
-
+allParenthesis(2) 
+allParenthesis(3)
 
 // var generateParenthesis = function(n) {
 //     let result = [];
