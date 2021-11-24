@@ -25,8 +25,8 @@ function allParHelper(n, open, close, str, final){
     }
 }
 
-allParenthesis(2) 
-allParenthesis(3)
+// allParenthesis(2) 
+allParenthesis(3) // OUTPUT: ((())) and (()()) and (())() and ()(()) and ()()()
 
 // var generateParenthesis = function(n) {
 //     let result = [];
