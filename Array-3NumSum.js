@@ -5,30 +5,46 @@
 
 function TripletNumSum(arr, target){
     let final = []
+    arr.sort((a,b) => a - b)
+    let lowIdx = 0
+    let highIdx = arr.length -1
+    let currIdx = 0
 
-    const add3Helper = (idx, sumList, targetSum) => {
-        let currNum = arr[idx]
-        if(idx === arr.length-3){
-            return final
-        } 
-        else {
-            if (sumList.length === 0){
-                sumList.push(currNum)
-                targetSum -= currNum
-            }
-            else {
-                if (idx < arr.indexOf(targetSum-currNum)){
-                    sumList.push(currNum, targetSum-currNum)
-                    final.push(sumList)
-                    sumList.splice(0,1)
-                }
-            }
-            add3Helper(idx++, sumList,targetSum)
-        }
+    for (let i=0; i<arr.length; i++){
+        let sumList = [arr[i]]
+        let sumTarg = target - arr[i]
+        
     }
 
-    add3Helper(0,[],target)
-    console.log('FINAL NEWWW: ', final)
 }
 
 TripletNumSum([12,3,1,2,-6,5,-8,6],0)
+
+
+// function TripletNumSum(arr, target){
+//     let final = []
+
+//     const add3Helper = (idx, sumList, targetSum) => {
+//         let currNum = arr[idx]
+//         if(idx === arr.length-3){
+//             return final
+//         } 
+//         else {
+//             if (sumList.length === 0){
+//                 sumList.push(currNum)
+//                 targetSum -= currNum
+//             }
+//             else {
+//                 if (idx < arr.indexOf(targetSum-currNum)){
+//                     sumList.push(currNum, targetSum-currNum)
+//                     final.push(sumList)
+//                     sumList.splice(0,1)
+//                 }
+//             }
+//             add3Helper(idx++, sumList,targetSum)
+//         }
+//     }
+
+//     add3Helper(0,[],target)
+//     console.log('FINAL NEWWW: ', final)
+// }

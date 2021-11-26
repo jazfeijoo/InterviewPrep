@@ -14,7 +14,7 @@ function reconstructByHeightView(list){
     })
     for (let person of list){
         // splice(start, deleteCount, item1) -> change array by remove or replace
-        //below code: person[1]=@ this index, 0=delete none, add person!
+        //below code: person[1]=@ this index, 0=delete none, person= insert this person!
         final.splice(person[1],0,person)
     }
    
