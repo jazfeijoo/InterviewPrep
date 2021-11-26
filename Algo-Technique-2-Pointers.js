@@ -129,4 +129,27 @@ function shortestUnsortedSubArray(list){
     console.log(shortest.length, shortest)
     return shortest
 }
-shortestUnsortedSubArray([2,6,4,8,10,9,15]) //OUTPUT: [6, 4, 8, 10, 9] aka 5 
+//shortestUnsortedSubArray([2,6,4,8,10,9,15]) //OUTPUT: [6, 4, 8, 10, 9] aka 5 
+
+
+// 6. Minimize Maximum Pair Sum in Array
+// The pair sum of a pair (a,b) is equal to a + b. The maximum pair sum is the largest pair sum in a list of pairs.
+// Given an array nums of even length n, pair up the elements of nums into n / 2 pairs such that:
+// Each element of nums is in exactly one pair, and the maximum pair sum is minimized.
+// Return the minimized maximum pair sum after optimally pairing up the elements.
+
+function minMaxPairSum(array){
+    array.sort((a,b) =>{ return a -b} )
+    let max = - Infinity
+    let pairs = array.map((num, idx) => {
+        if (idx <= (array.length / 2)){
+            let sum = num + array[array.length-1-idx]
+            max = Math.max(max, sum)
+            return [num, array[array.length-1-idx]]
+        }
+    }).splice(0,array.length / 2 +1)
+    console.log('FINAL:',pairs, max)
+    return max
+}
+minMaxPairSum([3,5,2,3]) // EXPECTED OUTPUT: 7
+minMaxPairSum([3,5,4,2,4,6]) // EXPECTED OUTPUT: 8
