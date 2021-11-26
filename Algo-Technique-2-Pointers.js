@@ -73,5 +73,60 @@ function Find2LinesMostWater(array){
     return maxArea
 }
 
-Find2LinesMostWater([1,8,6,2,5,4,8,3,7]) //EXPECTED OUTPUT: 8,7 -> area filled with water: 49
+// Find2LinesMostWater([1,8,6,2,5,4,8,3,7]) 
+//EXPECTED OUTPUT: 8,7 -> area filled with water: 49
 
+// 4. Max Number of K-Sum Pairs: You are given an integer array nums and an integer k. 
+// In one operation, you can pick two numbers from the array whose sum equals k and remove them from the array.
+// Return the maximum number of operations you can perform on the array.
+// Input: nums = [1,2,3,4], k = 5
+// Output: 2
+
+function maxSumKPairs(list, target){
+    let maxNum = 0
+    while (1 < list.length){
+        let findNum = target - list[0]
+        list.splice(0,1)
+        let idx = list.indexOf(findNum)
+        if (-1 < idx){
+            list.splice(idx,1)
+            maxNum ++
+        }
+    }
+    console.log('OUPUT:', maxNum)
+    return maxNum
+}
+// maxSumKPairs([1,2,3,4], 5) //OUTPUT: 2 , max of 2 operations 
+// maxSumKPairs([3,1,3,4,3], 6) //OUTPUT: 1
+
+// 5. Shortest Unsorted Continuous Subarray
+// Given an integer array nums, you need to find one continuous subarray that if you only sort this subarray in ascending order, 
+// then the whole array will be sorted in ascending order.
+// Return the shortest such subarray and output its length.
+// Input: nums = [2,6,4,8,10,9,15]
+// Output: 5
+// Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+
+function shortestUnsortedSubArray(list){
+    let start = null
+    let stop = null
+    let end = list.length-1
+    let curr = 1
+    while (curr < end){
+        if (list[curr-1] <= list[curr]){
+           // do nothing
+        } else {
+           if (start === null){
+               start = curr-1
+           }
+           else {
+            stop = curr
+           }
+        }
+        curr++
+    }
+    let shortest = list.slice(start, stop+1)
+    console.log(shortest.length, shortest)
+    return shortest
+}
+shortestUnsortedSubArray([2,6,4,8,10,9,15]) //OUTPUT: [6, 4, 8, 10, 9] aka 5 
