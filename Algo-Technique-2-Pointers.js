@@ -20,9 +20,9 @@ function find2Nums(list, target){
     }
     return 0
 }
-let testArr1 = [-1, 1, 2, 3, 5]
-let x1 = 5
-console.log('FINAL ANS:',find2Nums(testArr1, x1))
+// let testArr1 = [-1, 1, 2, 3, 5]
+// let x1 = 5
+// console.log('FINAL ANS:',find2Nums(testArr1, x1))
 
 // 2. Sort a list (array of n numbers) that only has 3 unique values 
 function sortListPointers(list){
@@ -44,8 +44,89 @@ function sortListPointers(list){
             list[endIndex] = 3
             endIndex--
         }
-    }
+    } 
    // console.log('FINAL LIST: ',list)
     return list 
 }
-sortListPointers(listTest2) 
+// let listTest2 = [1,2,3,2,3,1,2,2,3,3,3]
+// sortListPointers(listTest2) 
+
+// 3. Container With Most Water: Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of the line i is at (i, ai) and (i, 0). 
+// Find two lines, which, together with the x-axis forms a container, such that the container contains the most water.
+// EX INPUT: Input: height = [1,8,6,2,5,4,8,3,7]...array sorting cannot be messed with
+// EX OUTPUT: 49 (...line at start=1, stop= height.length-1, 7*7=49)
+
+function Find2LinesMostWater(array){
+    let start = 0
+    let stop = array.length-1
+    let maxArea = 0 
+    while (start < stop){
+        let currArea = Math.min(array[start], array[stop]) * (stop-start)
+        maxArea = Math.max(maxArea, currArea)
+        if (array[start] < array[stop]){
+            start ++
+        } else {
+            stop --
+        }
+    }
+    console.log('MAX AREA:', maxArea)
+    return maxArea
+}
+
+// Find2LinesMostWater([1,8,6,2,5,4,8,3,7]) 
+//EXPECTED OUTPUT: 8,7 -> area filled with water: 49
+
+// 4. Max Number of K-Sum Pairs: You are given an integer array nums and an integer k. 
+// In one operation, you can pick two numbers from the array whose sum equals k and remove them from the array.
+// Return the maximum number of operations you can perform on the array.
+// Input: nums = [1,2,3,4], k = 5
+// Output: 2
+
+function maxSumKPairs(list, target){
+    let maxNum = 0
+    while (1 < list.length){
+        let findNum = target - list[0]
+        list.splice(0,1)
+        let idx = list.indexOf(findNum)
+        if (-1 < idx){
+            list.splice(idx,1)
+            maxNum ++
+        }
+    }
+    console.log('OUPUT:', maxNum)
+    return maxNum
+}
+// maxSumKPairs([1,2,3,4], 5) //OUTPUT: 2 , max of 2 operations 
+// maxSumKPairs([3,1,3,4,3], 6) //OUTPUT: 1
+
+// 5. Shortest Unsorted Continuous Subarray
+// Given an integer array nums, you need to find one continuous subarray that if you only sort this subarray in ascending order, 
+// then the whole array will be sorted in ascending order.
+// Return the shortest such subarray and output its length.
+// Input: nums = [2,6,4,8,10,9,15]
+// Output: 5
+// Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+
+function shortestUnsortedSubArray(list){
+    let start = null
+    let stop = null
+    let end = list.length-1
+    let curr = 1
+    while (curr < end){
+        if (list[curr-1] <= list[curr]){
+           // do nothing
+        } else {
+           if (start === null){
+               start = curr-1
+           }
+           else {
+            stop = curr
+           }
+        }
+        curr++
+    }
+    let shortest = list.slice(start, stop+1)
+    console.log(shortest.length, shortest)
+    return shortest
+}
+shortestUnsortedSubArray([2,6,4,8,10,9,15]) //OUTPUT: [6, 4, 8, 10, 9] aka 5 
