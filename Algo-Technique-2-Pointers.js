@@ -126,7 +126,7 @@ function shortestUnsortedSubArray(list){
         curr++
     }
     let shortest = list.slice(start, stop+1)
-    console.log(shortest.length, shortest)
+    // console.log(shortest.length, shortest)
     return shortest
 }
 //shortestUnsortedSubArray([2,6,4,8,10,9,15]) //OUTPUT: [6, 4, 8, 10, 9] aka 5 
@@ -148,8 +148,53 @@ function minMaxPairSum(array){
             return [num, array[array.length-1-idx]]
         }
     }).splice(0,array.length / 2 +1)
-    console.log('FINAL:',pairs, max)
+    // console.log('FINAL:',pairs, max)
     return max
 }
-minMaxPairSum([3,5,2,3]) // EXPECTED OUTPUT: 7
-minMaxPairSum([3,5,4,2,4,6]) // EXPECTED OUTPUT: 8
+// minMaxPairSum([3,5,2,3]) // EXPECTED OUTPUT: 7
+// minMaxPairSum([3,5,4,2,4,6]) // EXPECTED OUTPUT: 8
+
+// 7. Trapping Rain Water
+// Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+// Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+// Output: 6
+// Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. 
+// In this case, 6 units of rain water (blue section) are being trapped.
+
+function trapWaterAmount(heights){
+    let left = null
+    let right = null
+    let sub = []
+    let curr = 0 
+    let final = 0
+    while (curr < heights.length - 1){
+        if (left === null && right === null){
+            if ( heights[curr+1] < heights[curr]){
+                left = curr
+            }
+        }
+        else if (right === null){
+            if ( heights[left] <= heights[curr]){
+                right = heights[curr]
+            } else {
+                sub.push(heights[curr])
+            }
+        }
+        if (right !== null){
+            let height = Math.min(left, right)
+            for (let i=0; i < sub.length -1;i++){
+                final += height - sub[i]
+            }
+            console.log('SUB:', sub)
+            left = null
+            right = null 
+            sub = []
+        }
+        curr++
+    }  
+    console.log('OUTPUT:',final) 
+    return final
+
+}
+
+trapWaterAmount([0,1,0,2,1,0,1,3,2,1,2,1]) //OUPUT: 6 
