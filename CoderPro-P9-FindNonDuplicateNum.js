@@ -11,10 +11,15 @@ function findNonDup(arr){
     console.log(map)
     for (num in map){
         if (map[num] === 1) {
-            console.log(num)
             return num
         }
     }
 }
 
-findNonDup(arr1)
+// findNonDup(arr1)
+
+function findNonDupXOR(arr){
+    
+}
+
+findNonDupXOR(arr1)
