@@ -33,6 +33,19 @@ function solution(a, b) {
     }
 }
 
-console.log('TEST 1 iss: ',solution([7, 13],[1, 10, 16]))
+// console.log('TEST 1 iss: ',solution([7, 13],[1, 10, 16]))
 
-console.log('TEST 2 is: ', solution([0, 4, 8, 16],[0, 2, 6, 12, 14, 20]))
+// console.log('TEST 2 is: ', solution([0, 4, 8, 16],[0, 2, 6, 12, 14, 20]))
+
+//RETURN THE CENTURY THAT THE YEAR BELONGS IN...
+// function solution(year) {
+//     let remainder = year % 100
+//     if (remainder !== 0){
+//         let num = (year / 100 )
+//         let remNum = num % 1
+//         return num -remNum + 1
+//     }
+//     return year / 100
+    
+// }
+// console.log(solution(1905))
