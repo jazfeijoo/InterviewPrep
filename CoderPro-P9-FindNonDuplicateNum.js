@@ -8,18 +8,13 @@ function findNonDup(arr){
     for(let i=0; i< arr.length-1;i++){
         map[arr[i]] ? map[arr[i]] += 1 : map[arr[i]] = 1 
     }
-    console.log(map)
+    //console.log(map)
     for (num in map){
         if (map[num] === 1) {
+            // console.log('FINAL: ',num)
             return num
         }
     }
 }
 
-// findNonDup(arr1)
-
-function findNonDupXOR(arr){
-    
-}
-
-findNonDupXOR(arr1)
+ findNonDup(arr1)
