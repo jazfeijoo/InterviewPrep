@@ -33,7 +33,7 @@ function allCombinations (items) {
      
       let results = [];
       for (let slots = items.length; slots > 0; slots--) {
-        for (let loop = 0; loop < items.length; loop++) {
+        for (let loop = 0; loop < items.length - slots + 1; loop++) {
           let key = results.length;
           results[key] = [];
           for (let i = loop; i < loop + slots; i++) {
