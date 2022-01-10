@@ -197,4 +197,20 @@ function trapWaterAmount(heights){
 
 }
 
-trapWaterAmount([0,1,0,2,1,0,1,3,2,1,2,1]) //OUPUT: 6 
+// trapWaterAmount([0,1,0,2,1,0,1,3,2,1,2,1]) //OUPUT: 6 
+
+// 8. The pair sum of a pair (a,b) is equal to a + b. The maximum pair sum is the largest pair sum in a list of pairs.
+// Given an array nums of even length n, pair up the elements of nums into n / 2 pairs such that:
+// Each element of nums is in exactly one pair, and The maximum pair sum is minimized.
+// Return the minimized maximum pair sum after optimally pairing up the elements.
+
+function minMaxPairSum(arr){
+    arr.sort((a,b) => {
+        return a - b
+    })
+    let sum = arr[0] + arr[arr.length-1]
+    console.log(sum)
+    return sum
+}
+minMaxPairSum([3,5,4,2,4,6]) //EXPECTED: 8 
+minMaxPairSum([3,5,2,3]) //EXPECTED: 7 
