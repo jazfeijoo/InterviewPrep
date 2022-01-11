@@ -199,18 +199,34 @@ function trapWaterAmount(heights){
 
 // trapWaterAmount([0,1,0,2,1,0,1,3,2,1,2,1]) //OUPUT: 6 
 
-// 8. The pair sum of a pair (a,b) is equal to a + b. The maximum pair sum is the largest pair sum in a list of pairs.
-// Given an array nums of even length n, pair up the elements of nums into n / 2 pairs such that:
-// Each element of nums is in exactly one pair, and The maximum pair sum is minimized.
-// Return the minimized maximum pair sum after optimally pairing up the elements.
-
-function minMaxPairSum(arr){
-    arr.sort((a,b) => {
-        return a - b
-    })
-    let sum = arr[0] + arr[arr.length-1]
-    console.log(sum)
-    return sum
+//8. Shortest Subarray to be Removed to Make Array Sorted
+// Given an integer array arr, remove a subarray (can be empty) from arr such that the remaining elements in arr are non-decreasing.
+// Return the length of the shortest subarray to remove.
+// A subarray is a contiguous subsequence of the array.
+//Input: arr = [1,2,3,10,4,2,3,5] Output: 3
+// Input: arr = [5,4,3,2,1] Output: 4
+function shortRemoveToSort(arr){
+    let start = null
+    let stop = null
+    let idx = 1
+    while (idx < arr.length){
+        let prev = arr[idx-1]
+        let curr = arr[idx]
+        if (curr < prev){
+            if (start === null){
+                start = idx-1
+            } else {
+                stop = idx
+            }
+        }
+        idx++ 
+    }
+    let sub = arr.slice(start, stop+1)
+    if (sub.length === arr.length){
+        return sub.length-1
+    }
+    return sub.length
 }
-minMaxPairSum([3,5,4,2,4,6]) //EXPECTED: 8 
-minMaxPairSum([3,5,2,3]) //EXPECTED: 7 
+
+console.log(shortRemoveToSort([1,2,3,10,4,2,3,5])) //output: 3
+console.log(shortRemoveToSort([5,4,3,2,1])) //output: 4

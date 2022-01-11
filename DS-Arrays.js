@@ -43,13 +43,13 @@
 // Each element of nums is in exactly one pair, and The maximum pair sum is minimized.
 // Return the minimized maximum pair sum after optimally pairing up the elements.
 
-function minMaxPairSum(arr){
-    arr.sort((a,b) => {
-        return a - b
-    })
-    let sum = arr[0] + arr[arr.length-1]
-    console.log(sum)
-    return sum
-}
-minMaxPairSum([3,5,4,2,4,6]) //EXPECTED: 8 
-minMaxPairSum([3,5,2,3]) //EXPECTED: 7 
+// function minMaxPairSum(arr){
+//     arr.sort((a,b) => {
+//         return a - b
+//     })
+//     let sum = arr[0] + arr[arr.length-1]
+//     console.log(sum)
+//     return sum
+// }
+// minMaxPairSum([3,5,4,2,4,6]) //EXPECTED: 8 
+// minMaxPairSum([3,5,2,3]) //EXPECTED: 7 
