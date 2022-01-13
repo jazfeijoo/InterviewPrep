@@ -57,5 +57,40 @@ const longestSubPalindrome = (string) => {
     return final 
 }
 
-longestSubPalindrome('jazracecarnope')
-longestSubPalindrome('jaztttttttttttnope')
+// longestSubPalindrome('jazracecarnope')
+// longestSubPalindrome('jaztttttttttttnope')
+
+//8. Split Two Strings to Make Palindrome
+// You are given two strings a and b of the same length. Choose an index and split both strings at the same index, splitting a into two strings: 
+// aprefix and asuffix where a = aprefix + asuffix, and splitting b into two strings: bprefix and bsuffix where b = bprefix + bsuffix. 
+// Check if aprefix + bsuffix or bprefix + asuffix forms a palindrome.
+// When you split a string s into sprefix and ssuffix, either ssuffix or sprefix is allowed to be empty. For example, if s = "abc", then "" + "abc", "a" + "bc", "ab" + "c" , and "abc" + "" are valid splits.
+// Return true if it is possible to form a palindrome string, otherwise return false.
+//EXAMPLES: 
+// Input: a = "ulacfd", b = "jizalu" Output: true
+// Input: a = "xbdef", b = "xecab" Output: false
+
+function checkPalindrome(a,b){
+    let final = false
+    let aPre = '' 
+    let bPre = ''
+    for(let i=0; i<a.length;i++){
+        let aSuf = a.slice(i)
+        let bSuf = b.slice(i)
+
+        let checkA = aPre + bSuf
+        let checkB = bSuf  + aSuf
+        let revA = checkA.split('').reverse().join('')
+        let revB = checkB.split('').reverse().join('')
+        if (checkA === revA || checkB === revB ){
+            final = true
+        }
+        aPre += a[i]
+        bPre += b[i]
+    }
+    console.log(final)
+    return final
+}
+// checkPalindrome("ulacfd", "jizalu") //SHOULD BE: true
+// checkPalindrome("xbdef", "xecab") //SHOULD BE: false
+
